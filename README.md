@@ -3,9 +3,9 @@
 Tired of writing repetitive object.equals to compare primitive and non-primitive fields of every complex class you define? <br>
 This application uses Reflection and Generic Types and allows you to simply generate &lt;T>.Equal for any class. It not only checks whether objects are of the same instance but also if they are different instances but equal with respect to field values.  
 
-###Features 
+### Features 
 
-###Syntax
+### Syntax
 
 EasyEquals supports the popular AAA style of unit tests by providing an easy to understand syntax. 
 ```C#
@@ -45,5 +45,3 @@ compare.SetUp(actualResult, expectedResult);
 Assert.IsTrue(compare.AreEqual(deepEquality:true)); 
 ```
 
-
-### How To Use It
