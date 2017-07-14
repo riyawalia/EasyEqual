@@ -7,41 +7,49 @@ This application uses Reflection and Generic Types and allows you to simply gene
 
 ### Syntax
 
-EasyEquals supports the popular AAA style of unit tests by providing an easy to understand syntax. 
+EasyEquals supports the popular AAA style of unit tests by providing an easy to understand syntax:
 ```C#
-var compare = new Compare<Foo>(); 
-compare.SetUp(actualResult, expectedResult); 
-Assert.IsTrue(compare.AreEqual()); 
+var compare = new Compare<Fruit>(); 
+compare.SetUp(apples, oranges); 
+Assert.IsFalse(compare.AreEqual()); 
 ```
 
 Define a compare instance for a single type and use it repetitively: 
 
 ```C#
-public Compare<Foo> compare = new Compare<Foo>(); 
+public Compare<Fruit> compare = new Compare<Fruit>(); 
 
-compare.SetUp(actualFoo, expectedFoo); 
+compare.SetUp(apples, apples); 
 Assert.IsTrue(compare.AreEqual());
 
-compare.SetUp(actualResult, expectedResult);
+compare.SetUp(apples, seasonedApples);
 Assert.IsTrue(compare.AreEqual());
 ```
 
-Make use of constructors
+Make use of constructors to execute a detailed equality:
 ```C#
-var compareFlavor = compare<Foo>(vanillaFoo, fruityFoo);  
-compareFlavor.AreEqual(); 
-compareFlavor.AreEqual(deepEquality: true); 
+var compareQuality = compare<Fruit>(rottenFruits, freshFruit);  
+bool areEqual = compareQuality.AreEqual(); 
+Console.WriteLine(compareEquality.Differences()); 
+Console.WriteLine(compareEquality.Differences(deepEquality: true)); 
 ```
 
-EasyEquals also supports a quick and dirty syntax to use outside of unit tests. 
+EasyEquals also supports a quick and dirty syntax to use outside of unit tests:
 ```C#
-var areEqual = Compare<Foo>.AreEqual(actualResult, expectedResult); 
+bool areEqual = Compare<Fruit>.AreEqual(oranges, oranges); 
 ```
 Overload functions to include more features: 
 ```C#
-Compare<Foo>.AreEqual(actualResult, expectedResult, deepEquality: true); 
-var compare = new Compare<Foo>(); 
-compare.SetUp(actualResult, expectedResult); 
+Compare<Fruit>.AreEqual(hisApples, myApples, deepEquality: true); 
+
+var compare = new Compare<Fruit>(); 
+compare.SetUp(ourApples, theirApples); 
 Assert.IsTrue(compare.AreEqual(deepEquality:true)); 
 ```
+### Currently Working On
+This application currently supports a shallow equality check of all types - simple and complex. I am currently working on supporting 
+ * Deep Equality including nested complex types
+ * Accessing a detailed description of unequal values to support well-defined error messages if assertion fails during unit tests 
 
+### Contacting me 
+If you have any ideas about any new features I could implement, feel free to contact me on riya.walia@edu.uwaterloo.ca 
