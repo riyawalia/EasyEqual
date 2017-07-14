@@ -1,13 +1,13 @@
 # EasyEqual
 ### Objective
 Tired of writing repetitive object.equals to compare primitive and non-primitive fields of every complex class you define? <br>
-This application uses Reflection and Generic Types and allows you to simply generate &lt;T>.Equal for any class. It not only checks whether objects are of the same instance but also if they are different instances but equal with respect to field values.  
+This application uses  allows you to simply generate &lt;T>.Equal for any class. It not only checks whether objects are of the same instance but also if they are different instances but equal with respect to field values.  
 
 ### Features 
-
+Coming soon
 ### Syntax
 
-EasyEquals supports the popular AAA style of unit tests by providing an easy to understand syntax:
+EasyEqual supports the popular AAA style of unit tests by providing an easy to understand syntax:
 ```C#
 var compare = new Compare<Fruit>(); 
 compare.SetUp(apples, oranges); 
@@ -34,7 +34,7 @@ Console.WriteLine(compareEquality.Differences());
 Console.WriteLine(compareEquality.Differences(deepEquality: true)); 
 ```
 
-EasyEquals also supports a quick and dirty syntax to use outside of unit tests:
+EasyEqual also supports a quick and dirty syntax to use outside of unit tests:
 ```C#
 bool areEqual = Compare<Fruit>.AreEqual(oranges, oranges); 
 ```
@@ -46,10 +46,14 @@ var compare = new Compare<Fruit>();
 compare.SetUp(ourApples, theirApples); 
 Assert.IsTrue(compare.AreEqual(deepEquality:true)); 
 ```
+### Download
+Coming soon
 ### Currently Working On
-This application currently supports a shallow equality check of all types - simple and complex. I am currently working on supporting 
- * Deep Equality including nested complex types
+This application currently supports a shallow equality check of all types - simple and complex. <br> I am currently working on supporting - 
+ * Deep equality checks including nested complex types
  * Accessing a detailed description of unequal values to support well-defined error messages if assertion fails during unit tests 
+ * Equality checks on interchangeable data types based on values (such as "45".ToInt() and 45)
+ * Making this project self-containable so it easy to clone and include in your project on cross platforms 
 
 ### Contacting me 
-If you have any ideas about any new features I could implement, feel free to contact me on riya.walia@edu.uwaterloo.ca 
+If you have any ideas about any new features I could implement, feel free to contact me on riya.walia@edu.uwaterloo.ca .
