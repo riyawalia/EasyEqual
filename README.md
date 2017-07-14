@@ -49,7 +49,7 @@ This application currently supports a shallow equality check of all types - simp
  * Deep equality checks including nested complex types
  * Accessing a detailed description of unequal values to support well-defined error messages if assertion fails during unit tests 
  * Equality checks on interchangeable data types based on values (such as "45".ToInt() and 45)
- * Determining the data type of input parameters at run time (To migrate from Compare<Fruit> to simply Compare)
+ * Determining the data type of input parameters at run time (To migrate from Compare &lt;Fruit> to simply Compare)
  * Making this project self-containable so it easy to clone and include in your project on cross platforms 
 ### Download
 Coming soon
