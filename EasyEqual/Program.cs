@@ -13,7 +13,6 @@ namespace EasyEqual
             // simple object 
             // hierarchy object 
             // complex nested objects 
-
             // assert stuff is true for both deep compare and shallow compare for all  
             // equal values, unequal values, same instances, different instances, demonstrate type safety as well 
 
