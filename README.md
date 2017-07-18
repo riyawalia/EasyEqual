@@ -7,9 +7,12 @@ This application uses  allows you to simply generate &lt;T>.Equal for any class.
 
 EasyEqual supports the popular AAA (arrange-act-assert) style of unit tests by providing a easy to read, instinctive syntax:
 ```C#
+//  arrange
 var compare = new Compare<Fruit>(); 
+// act
 compare.SetUp(apples, oranges); 
-compare.ShouldNotEqual(); //asserts that objects are not equal
+// assert
+compare.ShouldNotEqual(); 
 ```
 
 Define a compare instance for a single type and use it repetitively: 
@@ -43,8 +46,14 @@ Overload functions to include more features:
 Compare<Fruit>.AreEqual(hisApples, myApples, deepEquality: true); 
 
 var compare = new Compare<Fruit>(); 
+
 compare.SetUp(ourApples, theirApples); 
+
 compare.ShouldEqual(deepEquality:true, "Our apples should equal their apples"); 
+```
+Skip setting up and get straight to the assertion:
+```C#
+Compare<Fruit>.ShouldNotEqual(apples, oranges); 
 ```
 ### Currently Working On
 This application currently supports a shallow equality check of all types - simple and complex. <br> I am currently working on supporting - 
