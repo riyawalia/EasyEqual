@@ -1,15 +1,16 @@
-﻿﻿﻿using NUnit.Framework;
+﻿﻿﻿using NUnit.Framework; 
 using System;
+
 namespace EasyEqual
 {
     [TestFixture]
-    public class Foo_SimpleTests
+    public class Foo_Tests : ITestInterface<Foo>
     {
         protected Foo actualFoo;
         protected Foo expectedFoo;
         protected Foo fakeFoo;
 
-        protected Compare<Foo> compare; 
+        public Compare<Foo> compare { get; set; }
 
         [OneTimeSetUp]
         public void SetUp()
@@ -26,7 +27,7 @@ namespace EasyEqual
         // different instances of Foo, equal in value  
         public void EqualValues()
         {
-            this.compare.Set(actualFoo, expectedFoo);
+            this.compare.SetUp(actualFoo, expectedFoo);
 
             Assert.IsTrue(this.compare.AreEqual(), "Different instances of same values");
         }
@@ -34,7 +35,7 @@ namespace EasyEqual
         [Category("Foo")]
         public void UnequalValues()
         {
-            this.compare.Set(actualFoo, fakeFoo);
+            this.compare.SetUp(actualFoo, fakeFoo);
 
 			Assert.IsFalse(this.compare.AreEqual(), "Different instances of different values");
 		}
@@ -43,7 +44,7 @@ namespace EasyEqual
         [Category("Foo")]
         public void EqualNullValues()
         {
-            this.compare.Set(default(Foo), default(Foo));
+            this.compare.SetUp(default(Foo), default(Foo));
 
             Assert.IsTrue(this.compare.AreEqual(), "Null references"); 
         }
@@ -52,25 +53,41 @@ namespace EasyEqual
         [Category("Foo")]
         public void UnequalNullValues()
         {
-            this.compare.Set(default(Foo), this.fakeFoo);
+            this.compare.SetUp(default(Foo), this.fakeFoo);
 
-            Assert.IsFalse(this.compare.AreEqual()); 
+            this.compare.ShouldNotEqual(); 
         }
 
         [Test]
         [Category("Foo")]
         public void DeepEqual()
         {
-            this.compare.Set(this.actualFoo, this.expectedFoo); 
+            this.compare.SetUp(this.actualFoo, this.expectedFoo); 
 
-            Assert.IsTrue(this.compare.AreEqual(DeepEquality: true)); 
+            this.compare.ShouldEqual(deepEquality: true); 
+        }
+
+        [Test]
+        [Category("Foo")]
+        public void DeepUnequal()
+        {
+            this.compare.SetUp(this.actualFoo, this.fakeFoo);
+
+            this.compare.ShouldNotEqual(deepEquality: true); 
         }
 
         [Test]
         [Category("Foo")]
         public void EqualQuick()
         {
-            Assert.IsTrue(Compare<Foo>.AreEqual(this.actualFoo, this.expectedFoo)); 
+            Compare<Foo>.ShouldEqual(this.actualFoo, this.expectedFoo); 
+        }
+
+        [Test]
+        [Category("Foo")]
+        public void EqualQuickDeep()
+        {
+            Compare<Foo>.ShouldNotEqual(this.actualFoo, this.fakeFoo, deepEquality: true); 
         }
 
     }

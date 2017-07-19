@@ -24,8 +24,12 @@ namespace EasyEqual
 				var actualFoo = new Foo(5, "Riya", false);
 				var expectedFoo = new Foo(5, "Riya", true);
 
-				compare.Set(actualFoo, expectedFoo);
+				compare.SetUp(actualFoo, expectedFoo);
 			}
+
+            //TODO: goals for next commit -> ignore this file, deepEquality actually executed 
+            // next to next commit -> define your own assertion class, differences as strings, exec differences 
+            // next to next to next commit -> establish program examples, partial class definitions etc 
         }
     }
 }

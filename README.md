@@ -39,12 +39,12 @@ if(!areEqual)
 }
 ```
 
-EasyEqual also supports a quick and dirty syntax" 
+EasyEqual also supports a quick and dirty syntax
 ```C#
-// use in unit tests:
+// to use in unit tests
 Compare<Fruit>.ShouldNotEqual(apples, oranges); 
 
-// use in programs 
+// to use in programs 
 bool areNotEqual = Compare<Fruit>.AreNotEqual(apples, oranges); 
 ```
 Overload functions to include more features: 

@@ -1,6 +1,7 @@
 ﻿﻿using System;
 using System.Collections.Generic; 
 
+//TODO: make 1 or 2 partial definitions so that you can define some of their methods as examples in "Programs"
 namespace EasyEqual
 {
     /// <summary>
@@ -10,7 +11,9 @@ namespace EasyEqual
     {
         public int a;
         public string b;
+
         private bool valid; 
+
         public Foo()
         {
             
@@ -28,31 +31,41 @@ namespace EasyEqual
         }
     }
 
-    public class Coffee : Food
+    /// <summary>
+    /// A nested class example 
+    /// </summary>
+    public class Seed : Food
     {
         public Foo foo; 
-        public Coffee()
+        public Seed()
         {
             this.foo = new Foo(); 
         }
     }
 
-    public class Fruit : Food
+	/// <summary>
+	/// A complex and nested class example
+	/// </summary>
+	public class Fruit : Food
     {
-        public List<Foo> listFoo; // instantiate list 
+        public ICollection<Seed> listOfSeeds; // instantiate list 
         public Fruit()
         {
             
         }
     }
 
-    public class Food
+	/// <summary>
+	/// A complex class example 
+	/// </summary>
+	public class Food
     {
-        public bool perishable; 
+        public bool perishable;
+        public ICollection<Foo> listOfFoo; 
 
         public Food()
         {
-            
-        }
+			// instantiate it 
+		}
     }
 }

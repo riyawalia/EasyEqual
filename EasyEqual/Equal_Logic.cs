@@ -1,14 +1,19 @@
 ﻿using System;
+using NUnit.Framework;
 using System.Reflection;
 using System.Collections.Generic;
-using System.Linq; 
+using System.Linq;
 
 namespace EasyEqual
 {
-    public class Compare<T>
+    public partial class Compare<T>
     {
-        T actual;
-        T expected;
+        protected T actual;
+        protected T expected;
+
+        private HashSet<string> actualSet;
+        private HashSet<string> expectedSet;
+
 
         public Compare()
         {
@@ -16,28 +21,25 @@ namespace EasyEqual
         }
         public Compare(T actual, T expected)
         {
-            this.Set(actual, expected); 
+            this.SetUp(actual, expected);
         }
 
-        public HashSet<string> GetFields(T compared)
+        private HashSet<string> GetFields(T compared)
         {
-            // a list of all fields of object instances including public and non public members 
+            // a list of all fields of the object including public, non public members and instances
             var comparedFields = compared.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).ToList();
 
             // remove fields of collection type
             comparedFields.RemoveAll(field => field.FieldType.IsGenericType && field.FieldType.GetGenericTypeDefinition() == typeof(ICollection<>));
 
-            // fields are parsed intro strings and contained in a hash set 
+            // fields are parsed into strings and contained in a hash set 
             // null values are parsed into empty strings
             var comparedSet = new HashSet<string>(comparedFields.Select(field => (field.GetValue(compared) ?? "").ToString()));
-
-            comparedSet.ToList().ForEach(s => Console.WriteLine(s));
-
-            Console.WriteLine("nothing?"); 
 
             return comparedSet;
         }
 
+        #region EqualityChecks
         /// <summary>
         /// Checks shallow equality of two objects 
         /// </summary>
@@ -52,32 +54,68 @@ namespace EasyEqual
                 return nullValues == 2;
             }
 
-            var actualSet = this.GetFields(this.actual);
-            var expectedSet = this.GetFields(this.expected);
+            this.actualSet = this.GetFields(this.actual);
+            this.expectedSet = this.GetFields(this.expected);
 
             return actualSet.SetEquals(expectedSet);
         }
+
         /// <summary>
-        ///  Checks deep equality of two objects using recursion on non-primitive fields. 
+        ///  Checks deep equality of two objects by including values of non-primitive fields. 
         /// </summary>
         /// <returns><c>true</c>, if objects are equal <c>false</c> otherwise.</returns>
-        /// <param name="DeepEquality">If set to <c>true</c> deep equality.</param>
-        public bool AreEqual(bool DeepEquality)
+        /// <param name="deepEquality">If set to <c>true</c> deep equality.</param>
+        public bool AreEqual(bool deepEquality)
         {
-            if (!DeepEquality)
+            var shallowEquals = this.AreEqual();
+
+            if (!deepEquality)
             {
-                return this.AreEqual();
+                return shallowEquals;
             }
+            var deepEquals = true;
 
-            return true;
+            var complexFields = new List<FieldInfo>();
+            //TODO:
+
+            // as soon as something is false, exit loop 
+
+            // make a list of complex data types 
+            // include iCollections 
+            // put in a loop for the list, recur on each, recur and loop on iCollections 
+
+            return shallowEquals && deepEquals;
         }
 
-        public static bool AreEqual(T actual, T expected)
+        #endregion
+
+        #region EqualityAssertions
+
+
+
+        public void ShouldEqual(bool deepEquality)
         {
-            var compare = new Compare<T>(actual, expected);
+            var isEqual = this.AreEqual(deepEquality: deepEquality);
 
-            return compare.AreEqual(); 
+            if (isEqual == false)
+            {
+                throw new Exception("Assertion failed");
+            }
         }
+
+        public void ShouldNotEqual(bool deepEquality)
+        {
+            var isEqual = this.AreEqual(deepEquality: deepEquality);
+
+            if (isEqual == true)
+            {
+                throw new Exception("Assertion failed");
+            }
+        }
+
+        #endregion
+
+        #region Details
         /// <summary>
         /// Gets the differences in values of the two object instances being compared.
         /// </summary>
@@ -91,10 +129,11 @@ namespace EasyEqual
 
         }
 
-        public void Set(T actual, T expected)
+        public void SetUp(T actual, T expected)
         {
             this.actual = actual;
             this.expected = expected;
         }
+        #endregion
     }
 }
