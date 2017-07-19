@@ -87,6 +87,11 @@ namespace EasyEqual
             return shallowEquals && deepEquals;
         }
 
+        public bool AreNotEqual(bool deepEquality)
+        {
+            return !this.AreEqual(deepEquality: deepEquality); 
+        }
+
         #endregion
 
         #region EqualityAssertions
