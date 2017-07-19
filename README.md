@@ -1,13 +1,13 @@
 # EasyEqual
 ### Objective
 Tired of writing repetitive object.equals to compare primitive and non-primitive fields of every complex class you define? <br>
-This application uses  allows you to simply generate &lt;T>.Equal for any class. It not only checks whether objects are of the same instance but also if they are different instances but equal with respect to field values.  
+Simply include this library in your project to use equality functions for your classes and structures . It not only checks whether objects are of the same instance but also if they are different instances but equal with respect to field values.  
 
 ### Syntax
 
 EasyEqual supports the popular AAA (arrange-act-assert) style of unit tests by providing a easy to read, instinctive syntax:
 ```C#
-//  arrange
+// arrange
 var compare = new Compare<Fruit>(); 
 // act
 compare.SetUp(apples, oranges); 
@@ -33,13 +33,18 @@ var compareQuality = compare<Fruit>(rottenFruits, freshFruit);
 
 bool areEqual = compareQuality.AreEqual(); 
 
-Console.WriteLine(compareEquality.Differences()); 
-Console.WriteLine(compareEquality.Differences(deepEquality: true)); 
+if(!areEqual)
+{
+	Console.WriteLine(compareEquality.Differences());  
+}
 ```
 
-EasyEqual also supports a quick and dirty syntax to use outside of unit tests:
+EasyEqual also supports a quick and dirty syntax" 
 ```C#
-bool areEqual = Compare<Fruit>.AreEqual(oranges, oranges); 
+// use in unit tests:
+Compare<Fruit>.ShouldNotEqual(apples, oranges); 
+// use in programs 
+bool areNotEqual = Compare<Fruit>.AreNotEqual(apples, oranges); 
 ```
 Overload functions to include more features: 
 ```C#
@@ -51,10 +56,7 @@ compare.SetUp(ourApples, theirApples);
 
 compare.ShouldEqual(deepEquality:true, "Our apples should equal their apples"); 
 ```
-Skip setting up and get straight to the assertion:
-```C#
-Compare<Fruit>.ShouldNotEqual(apples, oranges); 
-```
+
 ### Currently Working On
 This application currently supports a shallow equality check of all types - simple and complex. <br> I am currently working on supporting - 
  * Deep equality checks including nested complex types
