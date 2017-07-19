@@ -43,6 +43,7 @@ EasyEqual also supports a quick and dirty syntax"
 ```C#
 // use in unit tests:
 Compare<Fruit>.ShouldNotEqual(apples, oranges); 
+
 // use in programs 
 bool areNotEqual = Compare<Fruit>.AreNotEqual(apples, oranges); 
 ```
