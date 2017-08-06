@@ -57,7 +57,8 @@ compare.SetUp(ourApples, theirApples);
 
 compare.ShouldEqual(deepEquality:true, "Our apples should equal their apples"); 
 ```
-
+### Conventions 
+This library uses standard PascalCase and camelCase naming conventions as outlined by Microsoft [here] (https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/capitalization-conventions) 
 ### Currently Working On
 This application currently supports a shallow equality check of all types - simple and complex. <br> I am currently working on supporting - 
  * Deep equality checks including nested complex types

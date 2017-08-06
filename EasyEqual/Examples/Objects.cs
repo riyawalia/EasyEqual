@@ -34,12 +34,24 @@ namespace EasyEqual
     /// <summary>
     /// A nested class example 
     /// </summary>
-    public class Seed : Food
+    public class Seed 
     {
-        public Foo foo; 
+        public Foo foo;
+        public bool edible; 
+
+        public Seed(bool edible)
+        {
+            this.foo = new Foo();
+            this.edible = edible; 
+        }
+        public Seed(Foo foo, bool edible)
+        {
+            this.foo = foo;
+            this.edible = edible; 
+        }
         public Seed()
         {
-            this.foo = new Foo(); 
+            
         }
     }
 

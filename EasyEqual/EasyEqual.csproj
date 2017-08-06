@@ -33,6 +33,8 @@
     <Reference Include="nunit.framework">
       <HintPath>packages\NUnit.3.7.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="System.Dynamic" />
+    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -43,6 +45,7 @@
     <Compile Include="EqualityComparison\Equal_Logic.cs" />
     <Compile Include="EqualityComparison\Equal_Overload.cs" />
     <Compile Include="CustomExceptions\Exceptions.cs" />
+    <Compile Include="Seed_Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

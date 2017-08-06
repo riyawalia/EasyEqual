@@ -24,19 +24,49 @@ namespace EasyEqual
             this.SetUp(actual, expected);
         }
 
+        private bool HasPrimitiveFieldsOnly()
+        {
+            var comparedFields = this.actual.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).ToList();
+
+            foreach (FieldInfo field in comparedFields) 
+            {
+				if (!field.GetType().IsPrimitive)
+				{
+					return false;
+				}
+            }
+            return true; 
+        }
+
         private HashSet<string> GetFields(T compared)
         {
             // a list of all fields of the object including public, non public members and instances
             var comparedFields = compared.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).ToList();
 
-            // remove fields of collection type
-            comparedFields.RemoveAll(field => field.FieldType.IsGenericType && field.FieldType.GetGenericTypeDefinition() == typeof(ICollection<>));
+            // remove fields of collection type and non primitive type
+            comparedFields.RemoveAll(field => !field.GetType().IsPrimitive || (field.FieldType.IsGenericType && field.FieldType.GetGenericTypeDefinition() == typeof(ICollection<>)));
 
             // fields are parsed into strings and contained in a hash set 
             // null values are parsed into empty strings
             var comparedSet = new HashSet<string>(comparedFields.Select(field => (field.GetValue(compared) ?? "").ToString()));
 
             return comparedSet;
+        }
+
+        private List<string> GetComplexTypes(T compared)
+        {
+            var comparedFields = compared.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).ToList();
+
+            comparedFields.RemoveAll(field => field.GetType().IsPrimitive || (field.FieldType.IsGenericType && field.FieldType.GetGenericTypeDefinition() == typeof(ICollection<>)));
+
+            var complexTypes = comparedFields.Select(field => field.GetType().ToString()).ToList();
+
+            return complexTypes; 
+        }
+
+        private void DeepEqualityForCollections()
+        {
+            // TODO: do stuff 
         }
 
         #region EqualityChecks
@@ -69,13 +99,43 @@ namespace EasyEqual
         {
             var shallowEquals = this.AreEqual();
 
-            if (!deepEquality)
+            if (!deepEquality || !shallowEquals || this.HasPrimitiveFieldsOnly())
             {
                 return shallowEquals;
             }
+
             var deepEquals = true;
 
-            var complexFields = new List<FieldInfo>();
+            var complexTypes = this.GetComplexTypes(this.actual);
+            var listOfEquality = new List<bool>(); 
+
+            foreach(string complexType in complexTypes)
+            {
+                // getting the objects 
+                Object actualComplex;
+                Object expectedComplex; 
+
+                var complexProperty = this.actual.GetType().GetProperty(complexType);
+                var type = complexProperty.PropertyType; 
+                //var expectedProperty = this.expected.GetType().GetProperty(complexType); 
+
+                actualComplex = complexProperty.GetValue(actual);
+                expectedComplex = complexProperty.GetValue(expected);
+
+                dynamic compareComplex = Activator.CreateInstance(typeof(Compare<>).MakeGenericType(type));
+
+                compareComplex.SetUp(actualComplex, expectedComplex);
+
+                bool areEqual = compareComplex.AreEqual(deepEquality: true);
+
+                listOfEquality.Add(areEqual); 
+            }
+
+            listOfEquality.ForEach(areEqual =>
+            {
+                deepEquals = (areEqual == false) ? false : deepEquals;
+			}); 
+
             //TODO:
 
             // as soon as something is false, exit loop 
@@ -84,7 +144,8 @@ namespace EasyEqual
             // include iCollections 
             // put in a loop for the list, recur on each, recur and loop on iCollections 
 
-            return shallowEquals && deepEquals;
+            // shallowEquals must be true 
+            return deepEquals;
         }
 
         public bool AreNotEqual(bool deepEquality)

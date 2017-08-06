@@ -6,9 +6,9 @@ namespace EasyEqual
     [TestFixture]
     public class Foo_Tests : ITestInterface<Foo>
     {
-        protected Foo actualFoo;
-        protected Foo expectedFoo;
-        protected Foo fakeFoo;
+        private Foo actualFoo;
+        private Foo expectedFoo;
+        private Foo fakeFoo;
 
         public Compare<Foo> compare { get; set; }
 
