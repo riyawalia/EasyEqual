@@ -73,4 +73,4 @@ Coming soon
 ### Requirements
 Coming soon
 ### Contact Me 
-If you have ideas about any new features I could implement, feel free to contact me on riya.walia@edu.uwaterloo.ca .
+If you have any ideas about any new features I could implement, feel free to contact me on riya.walia@edu.uwaterloo.ca .
