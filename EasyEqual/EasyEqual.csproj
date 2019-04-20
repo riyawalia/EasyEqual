@@ -46,6 +46,7 @@
     <Compile Include="EqualityComparison\Equal_Overload.cs" />
     <Compile Include="CustomExceptions\Exceptions.cs" />
     <Compile Include="Seed_Tests.cs" />
+    <Compile Include="ExtensionMethods.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
