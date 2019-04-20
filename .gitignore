@@ -296,3 +296,4 @@ __pycache__/
 
 *.sln
 *.csproj
+.DS_Store
