@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{51B03120-0342-4211-948E-C56D88EB2412}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>EasyEqual</RootNamespace>
+    <AssemblyName>EasyEqual</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Compare\IComparer.cs" />
+    <Compile Include="Compare\Comparer.cs" />
+    <Compile Include="Compare\Compare.cs" />
+    <Compile Include="Converters\IConvertToComparate.cs" />
+    <Compile Include="Converters\ConvertToComparate.cs" />
+    <Compile Include="Converters\Comparate.cs" />
+    <Compile Include="EqResult\IEqResult.cs" />
+    <Compile Include="EqResult\EqResult.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Compare\" />
+    <Folder Include="Converters\" />
+    <Folder Include="EqResult\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
