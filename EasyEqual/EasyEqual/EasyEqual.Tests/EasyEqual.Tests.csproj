@@ -31,7 +31,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PrimitiveTypeTests\PrimitiveTypeTests.cs" />
+    <Compile Include="PrimitiveTypeTests\BooleanTypeTests.cs" />
     <Compile Include="IEasyEqualTest.cs" />
   </ItemGroup>
   <ItemGroup>

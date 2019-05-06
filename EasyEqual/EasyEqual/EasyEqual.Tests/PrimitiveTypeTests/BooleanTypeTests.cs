@@ -5,7 +5,7 @@ using EasyEqual.Compare;
 namespace EasyEqual.Tests.PrimitiveTypeTests
 {
     [TestFixture()]
-    public class PrimitiveTypeTests: IEasyEqualTest<bool?>
+    public class BooleanTypeTests: IEasyEqualTest<bool?>
     {
 
         [Test()]
