@@ -9,13 +9,32 @@ namespace EasyEqual.Converters
     {
         public static Comparate Convert(T objectToConvert)
         {
-            var allFields = GetAllFieldTypes(objectToConvert);
-            var primitiveFields = GetPrimitiveFieldInfo(allFields);
-            var primitiveKeys = GetKeySet(primitiveFields);
+            if (objectToConvert.GetType().IsPrimitive)
+            {
+                return ConvertPrimitive(objectToConvert);
+			}
 
-            var comparate = new Comparate(primitiveKeys);
+            return ConvertComplex(objectToConvert); 
+                
+        }
+
+        private static Comparate ConvertPrimitive(T objectToConvert)
+        {
+            var key = new List<string>() { MakePrimitiveKey(objectToConvert) }; 
+
+            var comparate = new Comparate(new HashSet<string>(key));
             return comparate; 
         }
+
+		private static Comparate ConvertComplex(T objectToConvert)
+		{
+			var allFields = GetAllFieldTypes(objectToConvert);
+			var primitiveFields = GetPrimitiveFieldInfo(allFields);
+			var primitiveKeys = GetKeySet(primitiveFields, objectToConvert);
+
+			var comparate = new Comparate(primitiveKeys);
+			return comparate;
+		}
 
         private static List<FieldInfo> GetAllFieldTypes(T objectToConvert) 
         {
@@ -31,7 +50,22 @@ namespace EasyEqual.Converters
         }
 
         private static HashSet<Type> GetComplexFields(List<FieldInfo> allFieldTypes) { throw new NotImplementedException(); }
-        private static HashSet<string> GetKeySet(HashSet<FieldInfo> fields) { throw new NotImplementedException(); }
+
+        private static HashSet<string> GetKeySet(HashSet<FieldInfo> fields, T objectToConvert) 
+        {
+            return new HashSet<string>(fields.Select(field => MakeFieldKey(field, objectToConvert)).ToList()); 
+        }
+
+        private static string MakePrimitiveKey(T primitiveObject)
+        {
+            return primitiveObject.GetType() + "_" + primitiveObject; 
+        }
+
+        private static string MakeFieldKey(FieldInfo field, T objectToConvert)
+        {
+            var key = field.GetType() + "_" + field.GetValue(objectToConvert);
+            return key; 
+        }
 
     }
 }
