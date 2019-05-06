@@ -1,17 +1,23 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyEqual", "EasyEqual.csproj", "{0983CE86-DE58-4CAB-96B9-56B2B4C33CE9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyEqual", "EasyEqual\EasyEqual.csproj", "{9F80B5FC-39B7-47A5-83F8-32A395C8970B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyEqual.Tests", "EasyEqual.Tests\EasyEqual.Tests.csproj", "{D7F22F19-82DD-4211-90AB-523759BE79B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|x86 = Debug|x86
-		Release|x86 = Release|x86
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0983CE86-DE58-4CAB-96B9-56B2B4C33CE9}.Debug|x86.ActiveCfg = Debug|x86
-		{0983CE86-DE58-4CAB-96B9-56B2B4C33CE9}.Debug|x86.Build.0 = Debug|x86
-		{0983CE86-DE58-4CAB-96B9-56B2B4C33CE9}.Release|x86.ActiveCfg = Release|x86
-		{0983CE86-DE58-4CAB-96B9-56B2B4C33CE9}.Release|x86.Build.0 = Release|x86
+		{9F80B5FC-39B7-47A5-83F8-32A395C8970B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F80B5FC-39B7-47A5-83F8-32A395C8970B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F80B5FC-39B7-47A5-83F8-32A395C8970B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F80B5FC-39B7-47A5-83F8-32A395C8970B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7F22F19-82DD-4211-90AB-523759BE79B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7F22F19-82DD-4211-90AB-523759BE79B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7F22F19-82DD-4211-90AB-523759BE79B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7F22F19-82DD-4211-90AB-523759BE79B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

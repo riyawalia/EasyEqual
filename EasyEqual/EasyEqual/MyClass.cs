@@ -1,9 +1,9 @@
 ﻿using System;
 namespace EasyEqual
 {
-    public class Exceptions : Exception
+    public class MyClass
     {
-        public Exceptions()
+        public MyClass()
         {
             
         }
