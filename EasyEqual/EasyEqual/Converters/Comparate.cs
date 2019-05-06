@@ -15,7 +15,7 @@ namespace EasyEqual.Converters
 
         public static bool operator == (Comparate c1, Comparate c2)
 		{
-            return object.Equals(c1.PrimitiveFieldKeys, c2.PrimitiveFieldKeys); 
+            return c1.PrimitiveFieldKeys.SetEquals(c2.PrimitiveFieldKeys); 
 		}
 
         public static bool operator != (Comparate c1, Comparate c2)

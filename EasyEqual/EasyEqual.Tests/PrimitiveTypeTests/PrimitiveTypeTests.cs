@@ -5,82 +5,86 @@ using EasyEqual.Compare;
 namespace EasyEqual.Tests.PrimitiveTypeTests
 {
     [TestFixture()]
-    public class PrimitiveTypeTests: IEasyEqualTest<string>
+    public class PrimitiveTypeTests: IEasyEqualTest<bool?>
     {
 
         [Test()]
         public void AreEqualTest()
         {
-            var testValue = "Test";
+            Console.WriteLine("testing"); 
+            var testValue = true; 
+            Console.WriteLine("testing");
 
-            var result = Compare<string>.AreEqual(testValue, testValue); 
+            var result = Compare<bool?>.AreEqual(testValue, testValue); 
+            Console.WriteLine("testing");
             Assert.IsTrue(result);
+            Console.WriteLine("testing");
         }
-
+         
         [Test()]
         public void AreEqual_ValuesAreDefaultTest()
         {
-            var testValue = String.Empty;
+            var testValue = default(bool?);
 
-			var result = Compare<string>.AreEqual(testValue, testValue);
+			var result = Compare<bool?>.AreEqual(testValue, testValue);
 			Assert.IsTrue(result);
         }
 
         [Test()]
         public void AreEqual_ValuesAreNullTest()
         {
-            string testValue =  null; 
-			var result = Compare<string>.AreEqual(testValue, testValue);
+            bool? testValue =  null; 
+			var result = Compare<bool?>.AreEqual(testValue, testValue);
 			Assert.IsTrue(result); 
         }
 
         [Test()]
         public void AreUnequalTest()
         {
-            var actual = "Test";
-            var expected = "Test1";
+            var actual = true;
+            var expected = false;
 
-            var result = Compare<string>.AreEqual(actual, expected);
+            var result = Compare<bool?>.AreEqual(actual, expected);
 			Assert.IsFalse(result);
 		}
 
         [Test()]
         public void AreUnequal_ActualValueIsDefaultTest()
         {
-            var actual = String.Empty;
-			var expected = "Test";
+            var actual = default(bool?);
+			var expected = true;
 
-			var result = Compare<string>.AreEqual(actual, expected);
+			var result = Compare<bool?>.AreEqual(actual, expected);
 			Assert.IsFalse(result);
         }
 
         [Test()]
         public void AreUnequal_ActualValueIsNullTest()
         {
-			string actual = null;
-			var expected = "Test";
+			bool? actual = null;
+			var expected = true;
 
-			var result = Compare<string>.AreEqual(actual, expected);
+			var result = Compare<bool?>.AreEqual(actual, expected);
 			Assert.IsFalse(result);
         }
 
         [Test()]
         public void AreUnequal_ExpectedValueIsDefaultTest()
         {
-			var actual = "Test";
-			var expected = String.Empty;
+			var actual = true;
+            bool? expected = default(bool?);
 
-			var result = Compare<string>.AreEqual(actual, expected);
+			var result = Compare<bool?>.AreEqual(actual, expected);
 			Assert.IsFalse(result);
         }
 
         [Test()]
         public void AreUnequal_ExpectedValueIsNullTest()
         {
-			var actual = "Test";
-			string expected = null;
+			var actual = true;
+			bool? expected = null;
 
-			var result = Compare<string>.AreEqual(actual, expected);
+			var result = Compare<bool?>.AreEqual(actual, expected);
 			Assert.IsFalse(result);
         }
     }

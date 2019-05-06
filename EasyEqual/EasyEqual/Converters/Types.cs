@@ -8,7 +8,10 @@ namespace EasyEqual.Converters
     {
         public Types()
         {
-            bool IsObjPrimitive(T obj); 
+            bool IsObjPrimitive(string obj)
+            {
+                throw new NotImplementedException(); 
+            }
         }
     }
 }

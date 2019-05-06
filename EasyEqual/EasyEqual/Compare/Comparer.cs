@@ -37,12 +37,8 @@ namespace EasyEqual.Compare
 
         public IEqResult BuildResponse(bool equal)
         {
-            if (equal)
-            {
-                return BuildSuccessResponse();
-            }
-                
-            return BuildFailureResponse(); 
+            IEqResult result = new EqResult(equal);
+            return result; 
         }
     }
 }
