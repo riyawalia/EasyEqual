@@ -10,15 +10,11 @@ namespace EasyEqual.Tests.PrimitiveTypeTests
 
         [Test()]
         public void AreEqualTest()
-        {
-            Console.WriteLine("testing"); 
+        { 
             var testValue = true; 
-            Console.WriteLine("testing");
 
             var result = Compare<bool?>.AreEqual(testValue, testValue); 
-            Console.WriteLine("testing");
             Assert.IsTrue(result);
-            Console.WriteLine("testing");
         }
          
         [Test()]
