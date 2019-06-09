@@ -34,7 +34,10 @@
     <Compile Include="PrimitiveTypeTests\BooleanTypeTests.cs" />
     <Compile Include="IEasyEqualTest.cs" />
     <Compile Include="ComplexTypeTests\PrimitiveFieldsOnlyTests\PrimitiveFieldsOnly.cs" />
-    <Compile Include="ComplexTypeTests\PrimitiveFieldsOnlyTests\PrimitiveFieldsOnlyType.cs" />
+    <Compile Include="ComplexTypeTests\ComplexFieldsTests\ComplexFieldsType.cs" />
+    <Compile Include="ComplexTypeTests\Types\PrimitiveFieldsOnlyType.cs" />
+    <Compile Include="ComplexTypeTests\Types\StringFieldType.cs" />
+    <Compile Include="ComplexTypeTests\ComplexFieldsTests\StringFieldTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -48,6 +51,8 @@
   <ItemGroup>
     <Folder Include="ComplexTypeTests\" />
     <Folder Include="ComplexTypeTests\PrimitiveFieldsOnlyTests\" />
+    <Folder Include="ComplexTypeTests\ComplexFieldsTests\" />
+    <Folder Include="ComplexTypeTests\Types\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

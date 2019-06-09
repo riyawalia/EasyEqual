@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
-using System;
 using EasyEqual.Compare;
+using EasyEqual.Tests.ComplexTypeTests.Types;
 
 namespace EasyEqual.Tests.ComplexTypeTests.PrimitiveFieldsOnlyTests
 {
