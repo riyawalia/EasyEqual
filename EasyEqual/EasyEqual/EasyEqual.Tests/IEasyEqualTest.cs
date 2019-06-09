@@ -4,8 +4,9 @@ namespace EasyEqual.Tests
 {
     internal interface IEasyEqualTest<T>
     {
-        void AreEqualTest();
-        void AreEqual_ValuesAreNullTest();
+        void AreEqual_SameObjectTest();
+        void AreEqual_DifferentObjectTest();
+		void AreEqual_ValuesAreNullTest();
         void AreEqual_ValuesAreDefaultTest(); 
 
         void AreUnequalTest();

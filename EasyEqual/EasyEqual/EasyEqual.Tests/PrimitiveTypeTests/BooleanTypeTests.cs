@@ -5,11 +5,20 @@ using EasyEqual.Compare;
 namespace EasyEqual.Tests.PrimitiveTypeTests
 {
     [TestFixture()]
-    public class PrimitiveTypeTests: IEasyEqualTest<bool?>
+    public class BooleanTypeTests: IEasyEqualTest<bool?>
     {
+        [Test()]
+        public void AreEqual_DifferentObjectTest()
+        {
+			var actual = true;
+            var expected = true;
+
+			var result = Compare<bool?>.AreEqual(actual, expected); 
+			Assert.IsTrue(result);
+        }
 
         [Test()]
-        public void AreEqualTest()
+        public void AreEqual_SameObjectTest()
         { 
             var testValue = true; 
 
