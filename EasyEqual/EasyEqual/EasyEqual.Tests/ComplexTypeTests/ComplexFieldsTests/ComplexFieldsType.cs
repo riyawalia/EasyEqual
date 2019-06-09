@@ -6,7 +6,6 @@ namespace EasyEqual.Tests.ComplexTypeTests.DefinedComplexFieldsTests
 {
     public class DefinedComplexFieldsType
     {
-        
         public DefinedComplexFieldsType()
         {
         }

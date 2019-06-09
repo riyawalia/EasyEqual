@@ -54,7 +54,6 @@ namespace EasyEqual.Tests.ComplexTypeTests.PrimitiveFieldsOnlyTests
 			Assert.IsFalse(result);
         }
 
-
 		[Test()]
         public void AreUnequal_SingleFieldIsEqualTest()
 		{
