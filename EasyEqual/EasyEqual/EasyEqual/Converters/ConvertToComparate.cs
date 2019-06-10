@@ -46,7 +46,7 @@ namespace EasyEqual.Converters
         private static HashSet<FieldInfo> GetPrimitiveFieldInfo(List<FieldInfo> allFieldTypes) 
         {
             // gettype() is of base type reflection - instead using fieldtype
-            allFieldTypes.RemoveAll(field => !field.FieldType.IsPrimitive); // problem 
+            allFieldTypes.RemoveAll(field => !field.FieldType.IsPrimitive);
             return new HashSet<FieldInfo>(allFieldTypes); 
         }
 
