@@ -38,6 +38,7 @@
     <Compile Include="ComplexTypeTests\Types\PrimitiveFieldsOnlyType.cs" />
     <Compile Include="ComplexTypeTests\Types\StringFieldType.cs" />
     <Compile Include="ComplexTypeTests\ComplexFieldsTests\StringFieldTests.cs" />
+    <Compile Include="ComplexTypeTests\Types\NestedObjectType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

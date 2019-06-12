@@ -5,7 +5,7 @@ namespace EasyEqual.Tests.ComplexTypeTests.Types
     {
         public string StringField; 
 
-        public DefinedComplexFieldsType(string stringField)
+        public StringFieldType(string stringField)
         {
             StringField = stringField; 
         }

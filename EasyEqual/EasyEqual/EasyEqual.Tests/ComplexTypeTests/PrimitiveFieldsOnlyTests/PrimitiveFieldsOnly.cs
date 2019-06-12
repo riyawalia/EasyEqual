@@ -20,6 +20,7 @@ namespace EasyEqual.Tests.ComplexTypeTests.PrimitiveFieldsOnlyTests
         public void AreEqual_SameObjectTest()
         {
             var test = new PrimitiveFieldsOnlyType(true, 55);
+
 			var result = Compare<PrimitiveFieldsOnlyType>.AreEqual(test, test);
 			Assert.IsTrue(result);
         }
@@ -27,20 +28,14 @@ namespace EasyEqual.Tests.ComplexTypeTests.PrimitiveFieldsOnlyTests
         [Test()]
         public void AreEqual_ValuesAreDefaultTest()
         {
-            var actual = default(PrimitiveFieldsOnlyType); 
-			var expected = default(PrimitiveFieldsOnlyType);
-
-			var result = Compare<PrimitiveFieldsOnlyType>.AreEqual(actual, expected);
+			var result = Compare<PrimitiveFieldsOnlyType>.AreEqual(default(PrimitiveFieldsOnlyType), default(PrimitiveFieldsOnlyType));
 			Assert.IsTrue(result);
         }
 
         [Test()]
         public void AreEqual_ValuesAreNullTest()
         {
-			PrimitiveFieldsOnlyType actual = null;
-			PrimitiveFieldsOnlyType expected = null;
-
-			var result = Compare<PrimitiveFieldsOnlyType>.AreEqual(actual, expected);
+			var result = Compare<PrimitiveFieldsOnlyType>.AreEqual(null, null);
 			Assert.IsTrue(result);
         }
 
