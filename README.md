@@ -1,64 +1,27 @@
 # EasyEqual
 ### Objective
-Tired of writing repetitive object.equals to compare primitive and non-primitive fields of every complex class you define? <br>
-Simply include this library in your project to use equality functions for your classes and structures . It not only checks whether objects are of the same instance but also if they are different instances but equal with respect to field values.  
+Tired of writing repetitive `object.Equals()` to unit test every complex class you define? <br>
+Simply include this library in your project to use value-based equality functions for all your classes.  
 
-### Syntax
+### Usages
 
-EasyEqual supports the popular AAA (arrange-act-assert) style of unit tests by providing a easy to read, instinctive syntax:
-```C#
-// arrange
-var compare = new Compare<Fruit>(); 
-// act
-compare.SetUp(apples, oranges); 
-// assert
-compare.ShouldNotEqual(); 
+EasyEqual now supports a single equality function for all types - giving you an easy to read, instinctive syntax:
+``` C#
+var equality = Compare.AreEqual(apples, apples);
+var inequality = Compare.AreUnequal(apples, oranges); 
+```
+EasyEqual also supports a quick and dirty syntax for unit tests 
+``` C#
+Compare.AssertEqual(apples, apples, "Apples should be equal to apples"); 
+Compare.AssertUnequal(apples, oranges, "Apples should not be equal to oranges"); 
 ```
 
-Define a compare instance for a single type and use it repetitively: 
-
-```C#
-public Compare<Fruit> compare = new Compare<Fruit>(); 
-
-compare.SetUp(apples, apples); 
-compare.ShouldEqual();
-
-compare.SetUp(apples, seasonedApples);
-compare.ShouldEqual();
-```
-
-Make use of constructors to execute a detailed equality:
-```C#
-var compareQuality = compare<Fruit>(rottenFruits, freshFruit);  
-
-bool areEqual = compareQuality.AreEqual(); 
-
-if(!areEqual)
-{
-	Console.WriteLine(compareEquality.Differences());  
-}
-```
-
-EasyEqual also supports a quick and dirty syntax
-```C#
-// to use in unit tests
-Compare<Fruit>.ShouldNotEqual(apples, oranges); 
-
-// to use in programs 
-bool areNotEqual = Compare<Fruit>.AreNotEqual(apples, oranges); 
-```
 Overload functions to include more features: 
 ```C#
-Compare<Fruit>.AreEqual(hisApples, myApples, deepEquality: true); 
-
-var compare = new Compare<Fruit>(); 
-
-compare.SetUp(ourApples, theirApples); 
-
-compare.ShouldEqual(deepEquality:true, "Our apples should equal their apples"); 
+Compare.AreEqual(hisApples, myApples, ignorePrivateFields: true); 
 ```
 ### Conventions 
-This library uses standard PascalCase and camelCase naming conventions as outlined by Microsoft [here] (https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/capitalization-conventions) 
+This library uses standard PascalCase and camelCase naming conventions as outlined by Microsoft [here!](https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/capitalization-conventions) 
 ### Currently Working On
 This application currently supports a shallow equality check of all types - simple and complex. <br> I am currently working on supporting - 
  * Deep equality checks including nested complex types
