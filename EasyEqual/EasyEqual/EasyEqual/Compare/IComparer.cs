@@ -1,7 +1,7 @@
 ﻿using System;
-namespace EasyEqual.Compare
+namespace EasyEqual.CompareNS
 {
-    public interface IComparer<T>
+    public interface IComparer
     {
         IEqResult AreEqual();
     }

@@ -1,12 +1,12 @@
 ﻿using System; 
 
-namespace EasyEqual.Compare
+namespace EasyEqual.CompareNS
 {
-    public static class Compare<T>
+    public static class Compare
     {
-        public static bool AreEqual(T actual, T expected) 
+        public static bool AreEqual(object actual, object expected) 
         {
-            var comparer = new Comparer<T>(actual, expected);
+            var comparer = new Comparer(actual, expected);
             IEqResult eqResult = null;
 
             if (actual == null && expected == null)
@@ -25,19 +25,19 @@ namespace EasyEqual.Compare
             return eqResult.GetResponse(); 
         }
 
-        public static bool AreNotEqual(T actual, T expected)
+        public static bool AreNotEqual(object actual, object expected)
         {
             var areEqual = AreEqual(actual, expected);
             return !areEqual; 
         }
 
-        public static void AssertEqual(T actual, T expected, string assertionMsg)
+        public static void AssertEqual(object actual, object expected, string assertionMsg)
         {
             var areEqual = AreEqual(actual, expected);
             throw new NotImplementedException(); 
         }
 
-        public static void AssertUnequal(T actual, T expected, string assertionMsg)
+        public static void AssertUnequal(object actual, object expected, string assertionMsg)
         {
             var areNotEqual = AreNotEqual(actual, expected); 
             throw new NotImplementedException();

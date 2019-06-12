@@ -1,11 +1,11 @@
 ﻿using NUnit.Framework;
 using System;
-using EasyEqual.Compare;
+using EasyEqual.CompareNS;
 
 namespace EasyEqual.Tests.PrimitiveTypeTests
 {
     [TestFixture()]
-    public class BooleanTypeTests: IEasyEqualTest<bool?>
+    public class BooleanTypeTests: IEasyEqualTest
     {
         [Test()]
         public void AreEqual_DifferentObjectTest()
@@ -13,7 +13,7 @@ namespace EasyEqual.Tests.PrimitiveTypeTests
 			var actual = true;
             var expected = true;
 
-			var result = Compare<bool?>.AreEqual(actual, expected); 
+			var result = Compare.AreEqual(actual, expected); 
 			Assert.IsTrue(result);
         }
 
@@ -22,7 +22,7 @@ namespace EasyEqual.Tests.PrimitiveTypeTests
         { 
             var testValue = true; 
 
-            var result = Compare<bool?>.AreEqual(testValue, testValue); 
+            var result = Compare.AreEqual(testValue, testValue); 
             Assert.IsTrue(result);
         }
          
@@ -31,7 +31,7 @@ namespace EasyEqual.Tests.PrimitiveTypeTests
         {
             var testValue = default(bool?);
 
-			var result = Compare<bool?>.AreEqual(testValue, testValue);
+			var result = Compare.AreEqual(testValue, testValue);
 			Assert.IsTrue(result);
         }
 
@@ -39,7 +39,7 @@ namespace EasyEqual.Tests.PrimitiveTypeTests
         public void AreEqual_ValuesAreNullTest()
         {
             bool? testValue =  null; 
-			var result = Compare<bool?>.AreEqual(testValue, testValue);
+			var result = Compare.AreEqual(testValue, testValue);
 			Assert.IsTrue(result); 
         }
 
@@ -49,7 +49,7 @@ namespace EasyEqual.Tests.PrimitiveTypeTests
             var actual = true;
             var expected = false;
 
-            var result = Compare<bool?>.AreEqual(actual, expected);
+            var result = Compare.AreEqual(actual, expected);
 			Assert.IsFalse(result);
 		}
 
@@ -59,7 +59,7 @@ namespace EasyEqual.Tests.PrimitiveTypeTests
             var actual = default(bool?);
 			var expected = true;
 
-			var result = Compare<bool?>.AreEqual(actual, expected);
+			var result = Compare.AreEqual(actual, expected);
 			Assert.IsFalse(result);
         }
 
@@ -69,7 +69,7 @@ namespace EasyEqual.Tests.PrimitiveTypeTests
 			bool? actual = null;
 			var expected = true;
 
-			var result = Compare<bool?>.AreEqual(actual, expected);
+			var result = Compare.AreEqual(actual, expected);
 			Assert.IsFalse(result);
         }
 
@@ -79,7 +79,7 @@ namespace EasyEqual.Tests.PrimitiveTypeTests
 			var actual = true;
             bool? expected = default(bool?);
 
-			var result = Compare<bool?>.AreEqual(actual, expected);
+			var result = Compare.AreEqual(actual, expected);
 			Assert.IsFalse(result);
         }
 
@@ -89,7 +89,7 @@ namespace EasyEqual.Tests.PrimitiveTypeTests
 			var actual = true;
 			bool? expected = null;
 
-			var result = Compare<bool?>.AreEqual(actual, expected);
+			var result = Compare.AreEqual(actual, expected);
 			Assert.IsFalse(result);
         }
     }

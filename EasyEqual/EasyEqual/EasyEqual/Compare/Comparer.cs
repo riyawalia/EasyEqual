@@ -1,16 +1,16 @@
 ﻿using System;
 using EasyEqual.Converters; 
 
-namespace EasyEqual.Compare
+namespace EasyEqual.CompareNS
 {
-    public class Comparer<T> : IComparer<T>
+    public class Comparer : IComparer
     {
         private readonly bool _success = true; 
-        private T _actual;
-        private T _expected;
+        private object _actual;
+        private object _expected;
 
         
-        public Comparer(T actual, T expected) 
+        public Comparer(object actual, object expected) 
         {
             _actual = actual;
             _expected = expected;
@@ -18,8 +18,8 @@ namespace EasyEqual.Compare
 
         public IEqResult AreEqual()
         {
-            var actualComparate = ConvertToComparate<T>.Convert(_actual);
-            var expectedComparate = ConvertToComparate<T>.Convert(_expected);
+            var actualComparate = ConvertToComparate.Convert(_actual);
+            var expectedComparate = ConvertToComparate.Convert(_expected);
 
             var equal = actualComparate == expectedComparate;
             return BuildResponse(equal); 

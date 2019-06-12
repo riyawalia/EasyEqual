@@ -1,11 +1,11 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
 
 namespace EasyEqual.Converters
 {
-    internal static class ConvertToComparate<T>
+    internal static class ConvertToComparate
     {
         public static Comparate Convert(object objectToConvert)
         {

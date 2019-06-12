@@ -1,8 +1,8 @@
 ﻿using System;
-using EasyEqual.Compare; 
+ 
 namespace EasyEqual.Tests
 {
-    internal interface IEasyEqualTest<T>
+    internal interface IEasyEqualTest
     {
         void AreEqual_SameObjectTest();
         void AreEqual_DifferentObjectTest();

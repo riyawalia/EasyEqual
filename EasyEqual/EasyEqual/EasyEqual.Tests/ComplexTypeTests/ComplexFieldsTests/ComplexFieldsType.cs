@@ -1,12 +1,12 @@
-﻿using System;
+﻿﻿using System;
 using NUnit.Framework;
-using EasyEqual.Compare;
+using EasyEqual.CompareNS;
 using EasyEqual.Tests.ComplexTypeTests.Types; 
 
 namespace EasyEqual.Tests.ComplexTypeTests.DefinedComplexFieldsTests
 {
     [TestFixture()]
-    public class DefinedComplexFieldsType : IEasyEqualTest<NestedObjectType>
+    public class DefinedComplexFieldsType : IEasyEqualTest
     {
 		public PrimitiveFieldsOnlyType actualField = new PrimitiveFieldsOnlyType(true, 55);
 		public PrimitiveFieldsOnlyType expectedField = new PrimitiveFieldsOnlyType(true, 55);
@@ -22,7 +22,7 @@ namespace EasyEqual.Tests.ComplexTypeTests.DefinedComplexFieldsTests
             var actual = new NestedObjectType(actualField, actualInt);
             var expected = new NestedObjectType(expectedField, expectedInt); 
 
-			var result = Compare<NestedObjectType>.AreEqual(actual, expected);
+			var result = Compare.AreEqual(actual, expected);
 			Assert.IsTrue(result);
         }
 
@@ -31,21 +31,21 @@ namespace EasyEqual.Tests.ComplexTypeTests.DefinedComplexFieldsTests
         {
 			var actual = new NestedObjectType(actualField, actualInt);
 
-			var result = Compare<NestedObjectType>.AreEqual(actual, actual);
+			var result = Compare.AreEqual(actual, actual);
 			Assert.IsTrue(result); 
         }
 
         [Test]
         public void AreEqual_ValuesAreDefaultTest()
         {
-            var result = Compare<NestedObjectType>.AreEqual(default(NestedObjectType), default(NestedObjectType));
+            var result = Compare.AreEqual(default(NestedObjectType), default(NestedObjectType));
 			Assert.IsTrue(result);
 		}
 
         [Test]
         public void AreEqual_ValuesAreNullTest()
         {
-			var result = Compare<NestedObjectType>.AreEqual(null, null);
+			var result = Compare.AreEqual(null, null);
 			Assert.IsTrue(result);
         }
 
@@ -55,7 +55,7 @@ namespace EasyEqual.Tests.ComplexTypeTests.DefinedComplexFieldsTests
 			var actual = new NestedObjectType(actualField, actualInt);
             var unequal = new NestedObjectType(unequalField, unequalInt);
 
-			var result = Compare<NestedObjectType>.AreEqual(actual, unequal);
+			var result = Compare.AreEqual(actual, unequal);
 			Assert.IsFalse(result);
         }
 
@@ -64,7 +64,7 @@ namespace EasyEqual.Tests.ComplexTypeTests.DefinedComplexFieldsTests
         {
 			var expected = new NestedObjectType(expectedField, expectedInt);
 
-            var result = Compare<NestedObjectType>.AreEqual(default(NestedObjectType), expected);
+            var result = Compare.AreEqual(default(NestedObjectType), expected);
 			Assert.IsFalse(result);
         }
 
@@ -73,7 +73,7 @@ namespace EasyEqual.Tests.ComplexTypeTests.DefinedComplexFieldsTests
         {
 			var expected = new NestedObjectType(expectedField, expectedInt);
 
-			var result = Compare<NestedObjectType>.AreEqual(null, expected);
+			var result = Compare.AreEqual(null, expected);
 			Assert.IsFalse(result);
         }
 
@@ -82,7 +82,7 @@ namespace EasyEqual.Tests.ComplexTypeTests.DefinedComplexFieldsTests
         {
             var actual = new NestedObjectType(actualField, actualInt);
 
-            var result = Compare<NestedObjectType>.AreEqual(actual, default(NestedObjectType));
+            var result = Compare.AreEqual(actual, default(NestedObjectType));
 			Assert.IsFalse(result);
         }
 
@@ -91,7 +91,7 @@ namespace EasyEqual.Tests.ComplexTypeTests.DefinedComplexFieldsTests
         {
 			var actual = new NestedObjectType(actualField, actualInt);
 
-			var result = Compare<NestedObjectType>.AreEqual(actual, null);
+			var result = Compare.AreEqual(actual, null);
 			Assert.IsFalse(result);
         }
     }
