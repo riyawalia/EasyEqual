@@ -11,14 +11,14 @@ namespace EasyEqual.Converters
         {
             if (objectToConvert.GetType().IsPrimitive)
             {
-                return ConvertPrimitive(objectToConvert);
+                return ConvertPrimitiveType(objectToConvert);
 			}
 
-            return ConvertComplex(objectToConvert); 
+            return ConvertComplexType(objectToConvert); 
                 
         }
 
-        private static Comparate ConvertPrimitive(T objectToConvert)
+        private static Comparate ConvertPrimitiveType(T objectToConvert)
         {
             var key = new List<string>() { MakePrimitiveKey(objectToConvert) }; 
 
@@ -26,15 +26,36 @@ namespace EasyEqual.Converters
             return comparate; 
         }
 
-		private static Comparate ConvertComplex(T objectToConvert)
+		private static Comparate ConvertComplexType(T objectToConvert)
 		{
-			var allFields = GetAllFieldTypes(objectToConvert);
+            var allFields = GetAllFieldTypes(objectToConvert);
+            var primitiveKeys = ConvertPrimitiveFields(allFields, objectToConvert);
+            var complexFields = GetComplexFieldInfo(allFields);
+
+            if (complexFields.Count() == 0)
+                return new Comparate(primitiveKeys);
+
+            var complexComparate = new HashSet<Comparate>();
+            foreach (var fieldInfo in complexFields) {
+                var fieldValue = fieldInfo.GetValue(objectToConvert);
+                var fieldComparate = Convert(fieldValue);
+                complexComparate.Add(fieldComparate); 
+                
+            }
+
+            return new Comparate(primitiveKeys, complexComparate);
+		}
+
+
+
+
+        private static HashSet<string> ConvertPrimitiveFields(List<FieldInfo> allFields, T objectToConvert) {
+			
 			var primitiveFields = GetPrimitiveFieldInfo(allFields);
 			var primitiveKeys = GetKeySet(primitiveFields, objectToConvert);
 
-			var comparate = new Comparate(primitiveKeys);
-			return comparate;
-		}
+            return primitiveKeys; 
+        }
 
         private static List<FieldInfo> GetAllFieldTypes(T objectToConvert) 
         {
@@ -50,7 +71,11 @@ namespace EasyEqual.Converters
             return new HashSet<FieldInfo>(allFieldTypes); 
         }
 
-        private static HashSet<Type> GetComplexFields(List<FieldInfo> allFieldTypes) { throw new NotImplementedException(); }
+        private static HashSet<FieldInfo> GetComplexFieldInfo(List<FieldInfo> allFieldTypes) 
+        { 
+            allFieldTypes.RemoveAll(field => field.FieldType.IsPrimitive);
+            return new HashSet<FieldInfo>(allFieldTypes); 
+        }
 
         private static HashSet<string> GetKeySet(HashSet<FieldInfo> fields, T objectToConvert) 
         {
