@@ -35,7 +35,7 @@ namespace EasyEqual.Converters
             if (complexFields.Count() == 0)
                 return new Comparate(primitiveKeys);
 
-            var complexComparate = new HashSet<Comparate>();
+            var complexComparate = new List<Comparate>();
             foreach (var fieldInfo in complexFields) {
                 var fieldValue = fieldInfo.GetValue(objectToConvert);
                 var fieldComparate = Convert(fieldValue);
