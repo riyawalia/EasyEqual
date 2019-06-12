@@ -62,25 +62,37 @@ namespace EasyEqual.Tests.ComplexTypeTests.DefinedComplexFieldsTests
         [Test]
         public void AreUnequal_ActualValueIsDefaultTest()
         {
-            throw new NotImplementedException();
+			var expected = new NestedObjectType(expectedField, expectedInt);
+
+            var result = Compare<NestedObjectType>.AreEqual(default(NestedObjectType), expected);
+			Assert.IsFalse(result);
         }
 
         [Test]
         public void AreUnequal_ActualValueIsNullTest()
         {
-            throw new NotImplementedException();
+			var expected = new NestedObjectType(expectedField, expectedInt);
+
+			var result = Compare<NestedObjectType>.AreEqual(null, expected);
+			Assert.IsFalse(result);
         }
 
         [Test]
         public void AreUnequal_ExpectedValueIsDefaultTest()
         {
-            throw new NotImplementedException();
+            var actual = new NestedObjectType(actualField, actualInt);
+
+            var result = Compare<NestedObjectType>.AreEqual(actual, default(NestedObjectType));
+			Assert.IsFalse(result);
         }
 
         [Test]
         public void AreUnequal_ExpectedValueIsNullTest()
         {
-            throw new NotImplementedException();
+			var actual = new NestedObjectType(actualField, actualInt);
+
+			var result = Compare<NestedObjectType>.AreEqual(actual, null);
+			Assert.IsFalse(result);
         }
     }
 }

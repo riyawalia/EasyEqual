@@ -23,9 +23,22 @@ namespace EasyEqual.Converters
         public static bool operator == (Comparate c1, Comparate c2)
 		{
             bool primitiveFields =  c1.PrimitiveFieldKeys.SetEquals(c2.PrimitiveFieldKeys);
-            bool complexFields = c1.ComplexComparate.SetEquals(c2.ComplexComparate); // double check that this uses == operator defined 
+            if (!primitiveFields)
+                return false; 
 
-            return complexFields && primitiveFields; 
+            foreach(var c1complex in c1.ComplexComparate) {
+                bool exists = false;
+                foreach(var c2complex in c2.ComplexComparate) {
+                    if (c1complex == c2complex) {
+                        exists = true;
+                        break; 
+                    }
+                }
+                if (!exists)
+                    return false; 
+            }
+
+            return true; 
 		}
 
         public static bool operator != (Comparate c1, Comparate c2)
