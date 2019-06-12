@@ -32,5 +32,10 @@ namespace EasyEqual.Converters
         {
             return !(c1 == c2); 
         }
+
+		public override bool Equals(object obj)
+		{
+            return this == (Comparate) obj; 
+		}
     }
 }

@@ -7,7 +7,7 @@ namespace EasyEqual.Converters
 {
     internal static class ConvertToComparate<T>
     {
-        public static Comparate Convert(T objectToConvert)
+        public static Comparate Convert(object objectToConvert)
         {
             if (objectToConvert.GetType().IsPrimitive)
             {
@@ -18,7 +18,7 @@ namespace EasyEqual.Converters
                 
         }
 
-        private static Comparate ConvertPrimitiveType(T objectToConvert)
+        private static Comparate ConvertPrimitiveType(object objectToConvert)
         {
             var key = new List<string>() { MakePrimitiveKey(objectToConvert) }; 
 
@@ -26,7 +26,7 @@ namespace EasyEqual.Converters
             return comparate; 
         }
 
-		private static Comparate ConvertComplexType(T objectToConvert)
+		private static Comparate ConvertComplexType(object objectToConvert)
 		{
             var allFields = GetAllFieldTypes(objectToConvert);
             var primitiveKeys = ConvertPrimitiveFields(allFields, objectToConvert);
@@ -49,7 +49,7 @@ namespace EasyEqual.Converters
 
 
 
-        private static HashSet<string> ConvertPrimitiveFields(List<FieldInfo> allFields, T objectToConvert) {
+        private static HashSet<string> ConvertPrimitiveFields(List<FieldInfo> allFields, object objectToConvert) {
 			
 			var primitiveFields = GetPrimitiveFieldInfo(allFields);
 			var primitiveKeys = GetKeySet(primitiveFields, objectToConvert);
@@ -57,7 +57,7 @@ namespace EasyEqual.Converters
             return primitiveKeys; 
         }
 
-        private static List<FieldInfo> GetAllFieldTypes(T objectToConvert) 
+        private static List<FieldInfo> GetAllFieldTypes(object objectToConvert) 
         {
 			var bindingFlags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public;
             var fieldTypes = objectToConvert.GetType().GetFields(bindingFlags);
@@ -67,28 +67,30 @@ namespace EasyEqual.Converters
         private static HashSet<FieldInfo> GetPrimitiveFieldInfo(List<FieldInfo> allFieldTypes) 
         {
             // gettype() is of base type reflection - instead using fieldtype
-            allFieldTypes.RemoveAll(field => !field.FieldType.IsPrimitive);
-            return new HashSet<FieldInfo>(allFieldTypes); 
+            var primitiveFieldInfo = allFieldTypes;
+            primitiveFieldInfo.RemoveAll(field => !field.FieldType.IsPrimitive);
+            return new HashSet<FieldInfo>(primitiveFieldInfo); 
         }
 
         private static HashSet<FieldInfo> GetComplexFieldInfo(List<FieldInfo> allFieldTypes) 
-        { 
-            allFieldTypes.RemoveAll(field => field.FieldType.IsPrimitive);
-            return new HashSet<FieldInfo>(allFieldTypes); 
+        {
+            var complexFieldInfo = allFieldTypes; 
+            complexFieldInfo.RemoveAll(field => field.FieldType.IsPrimitive);
+            return new HashSet<FieldInfo>(complexFieldInfo); 
         }
 
-        private static HashSet<string> GetKeySet(HashSet<FieldInfo> fields, T objectToConvert) 
+        private static HashSet<string> GetKeySet(HashSet<FieldInfo> fields, object objectToConvert) 
         {
             var keySet = new HashSet<string>(fields.Select(field => MakeFieldKey(field, objectToConvert)).ToList());
             return keySet; 
         }
 
-        private static string MakePrimitiveKey(T primitiveObject)
+        private static string MakePrimitiveKey(object primitiveObject)
         {
             return primitiveObject.GetType() + "_" + primitiveObject; 
         }
 
-        private static string MakeFieldKey(FieldInfo field, T objectToConvert)
+        private static string MakeFieldKey(FieldInfo field, object objectToConvert)
         {
             var key = field.GetType() + "_" + field.GetValue(objectToConvert);
             return key; 

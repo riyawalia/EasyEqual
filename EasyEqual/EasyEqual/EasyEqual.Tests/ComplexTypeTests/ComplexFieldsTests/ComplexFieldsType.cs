@@ -56,7 +56,7 @@ namespace EasyEqual.Tests.ComplexTypeTests.DefinedComplexFieldsTests
             var unequal = new NestedObjectType(unequalField, unequalInt);
 
 			var result = Compare<NestedObjectType>.AreEqual(actual, unequal);
-			Assert.IsTrue(result);
+			Assert.IsFalse(result);
         }
 
         [Test]
