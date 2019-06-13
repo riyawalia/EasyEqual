@@ -23,17 +23,10 @@ Compare.AreEqual(hisApples, myApples, ignorePrivateFields: true);
 ### Conventions 
 This library uses standard PascalCase and camelCase naming conventions as outlined by Microsoft [here!](https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/capitalization-conventions) 
 ### Currently Working On
-This application currently supports a shallow equality check of all types - simple and complex. <br> I am currently working on supporting - 
- * Deep equality checks including nested complex types
+ * Improving efficiency of the equality checks 
  * Accessing a detailed description of unequal values to support well-defined error messages if assertion fails during unit tests 
- * Equality checks on interchangeable data types based on values (such as "45".ToInt() and 45)
- * Determining the data type of input parameters at run time (To migrate from Compare &lt;Fruit> to simply Compare)
- * Making this project self-containable so it easy to clone and include in your project on cross platforms 
-### Download
-Coming soon
-### Features 
-Coming soon
-### Requirements
+ * Providing equality checks on interchangeable data types based on values (such as "45" and 45)
+### Install
 Coming soon
 ### Contact Me 
-If you have ideas about any new features I could implement, feel free to contact me on riya.walia@edu.uwaterloo.ca .
+If you have ideas about any new features I could implement, feel free to contact me on riyawalia12@gmail.com 
