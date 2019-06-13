@@ -1,4 +1,4 @@
-﻿using System; 
+﻿using System;
 
 namespace EasyEqual.CompareNS
 {
@@ -30,18 +30,5 @@ namespace EasyEqual.CompareNS
             var areEqual = AreEqual(actual, expected);
             return !areEqual; 
         }
-
-        public static void AssertEqual(object actual, object expected, string assertionMsg)
-        {
-            var areEqual = AreEqual(actual, expected);
-            throw new NotImplementedException(); 
-        }
-
-        public static void AssertUnequal(object actual, object expected, string assertionMsg)
-        {
-            var areNotEqual = AreNotEqual(actual, expected); 
-            throw new NotImplementedException();
-        }
-
     }
 }
