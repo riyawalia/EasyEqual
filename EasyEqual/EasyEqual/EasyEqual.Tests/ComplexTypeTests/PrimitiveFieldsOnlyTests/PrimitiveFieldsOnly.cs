@@ -1,18 +1,18 @@
 ﻿using NUnit.Framework;
-using EasyEqual.Compare;
+using EasyEqual.CompareNS;
 using EasyEqual.Tests.ComplexTypeTests.Types;
 
 namespace EasyEqual.Tests.ComplexTypeTests.PrimitiveFieldsOnlyTests
 {
     [TestFixture()]
-    public class PrimitiveFieldsOnly : IEasyEqualTest<PrimitiveFieldsOnly>
+    public class PrimitiveFieldsOnly : IEasyEqualTest
     {
         public void AreEqual_DifferentObjectTest()
         {
 			var actual = new PrimitiveFieldsOnlyType(true, 55);
 			var expected = new PrimitiveFieldsOnlyType(true, 55);
 
-			var result = Compare<PrimitiveFieldsOnlyType>.AreEqual(actual, expected);
+			var result = Compare.AreEqual(actual, expected);
 			Assert.IsTrue(result);
         }
 
@@ -21,21 +21,21 @@ namespace EasyEqual.Tests.ComplexTypeTests.PrimitiveFieldsOnlyTests
         {
             var test = new PrimitiveFieldsOnlyType(true, 55);
 
-			var result = Compare<PrimitiveFieldsOnlyType>.AreEqual(test, test);
+			var result = Compare.AreEqual(test, test);
 			Assert.IsTrue(result);
         }
 
         [Test()]
         public void AreEqual_ValuesAreDefaultTest()
         {
-			var result = Compare<PrimitiveFieldsOnlyType>.AreEqual(default(PrimitiveFieldsOnlyType), default(PrimitiveFieldsOnlyType));
+			var result = Compare.AreEqual(default(PrimitiveFieldsOnlyType), default(PrimitiveFieldsOnlyType));
 			Assert.IsTrue(result);
         }
 
         [Test()]
         public void AreEqual_ValuesAreNullTest()
         {
-			var result = Compare<PrimitiveFieldsOnlyType>.AreEqual(null, null);
+			var result = Compare.AreEqual(null, null);
 			Assert.IsTrue(result);
         }
 
@@ -45,7 +45,7 @@ namespace EasyEqual.Tests.ComplexTypeTests.PrimitiveFieldsOnlyTests
 			var actual = new PrimitiveFieldsOnlyType(true, 55);
 			var expected = new PrimitiveFieldsOnlyType(false, 110);
 
-			var result = Compare<PrimitiveFieldsOnlyType>.AreEqual(actual, expected);
+			var result = Compare.AreEqual(actual, expected);
 			Assert.IsFalse(result);
         }
 
@@ -55,7 +55,7 @@ namespace EasyEqual.Tests.ComplexTypeTests.PrimitiveFieldsOnlyTests
 			var actual = new PrimitiveFieldsOnlyType(true, 55);
 			var expected = new PrimitiveFieldsOnlyType(true, 110);
 
-			var result = Compare<PrimitiveFieldsOnlyType>.AreEqual(actual, expected);
+			var result = Compare.AreEqual(actual, expected);
 			Assert.IsFalse(result);
 		}
 
@@ -65,7 +65,7 @@ namespace EasyEqual.Tests.ComplexTypeTests.PrimitiveFieldsOnlyTests
 			var actual = default(PrimitiveFieldsOnlyType);
 			var expected = new PrimitiveFieldsOnlyType(true, 55);
 
-			var result = Compare<PrimitiveFieldsOnlyType>.AreEqual(actual, expected);
+			var result = Compare.AreEqual(actual, expected);
 			Assert.IsFalse(result);
         }
 
@@ -75,7 +75,7 @@ namespace EasyEqual.Tests.ComplexTypeTests.PrimitiveFieldsOnlyTests
             PrimitiveFieldsOnlyType actual = null;
 			var expected = new PrimitiveFieldsOnlyType(true, 55);
 
-			var result = Compare<PrimitiveFieldsOnlyType>.AreEqual(actual, expected);
+			var result = Compare.AreEqual(actual, expected);
 			Assert.IsFalse(result);
         }
 
@@ -85,7 +85,7 @@ namespace EasyEqual.Tests.ComplexTypeTests.PrimitiveFieldsOnlyTests
 			var actual = new PrimitiveFieldsOnlyType(true, 55);
 			var expected = default(PrimitiveFieldsOnlyType); 
 
-			var result = Compare<PrimitiveFieldsOnlyType>.AreEqual(actual, expected);
+			var result = Compare.AreEqual(actual, expected);
 			Assert.IsFalse(result);
         }
 
@@ -95,7 +95,7 @@ namespace EasyEqual.Tests.ComplexTypeTests.PrimitiveFieldsOnlyTests
 			var actual = new PrimitiveFieldsOnlyType(true, 55); 
 			PrimitiveFieldsOnlyType expected = null;
 
-			var result = Compare<PrimitiveFieldsOnlyType>.AreEqual(actual, expected);
+			var result = Compare.AreEqual(actual, expected);
 			Assert.IsFalse(result);
         }
     }

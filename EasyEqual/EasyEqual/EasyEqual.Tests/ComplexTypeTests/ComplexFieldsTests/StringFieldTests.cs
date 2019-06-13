@@ -1,12 +1,12 @@
 ﻿using System;
 using NUnit.Framework;
-using EasyEqual.Compare;
+using EasyEqual.CompareNS;
 using EasyEqual.Tests.ComplexTypeTests.Types;
 
 namespace EasyEqual.Tests.ComplexTypeTests.ComplexFieldsTests
 {
     [TestFixture()]
-    public class StringFieldTests : IEasyEqualTest<StringFieldTests>
+    public class StringFieldTests : IEasyEqualTest
     {
         
         [Test]
@@ -15,7 +15,7 @@ namespace EasyEqual.Tests.ComplexTypeTests.ComplexFieldsTests
             var actual = new StringFieldType("test"); 
             var expected = new StringFieldType("test");
 
-			var result = Compare<StringFieldType>.AreEqual(actual, expected);
+			var result = Compare.AreEqual(actual, expected);
 			Assert.IsTrue(result);
         }
 
@@ -24,21 +24,21 @@ namespace EasyEqual.Tests.ComplexTypeTests.ComplexFieldsTests
         {
 			var actual = new StringFieldType("test");
 
-			var result = Compare<StringFieldType>.AreEqual(actual, actual);
+			var result = Compare.AreEqual(actual, actual);
 			Assert.IsTrue(result);
         }
 
         [Test]
         public void AreEqual_ValuesAreDefaultTest()
         {
-			var result = Compare<StringFieldType>.AreEqual(default(StringFieldType), default(StringFieldType));
+			var result = Compare.AreEqual(default(StringFieldType), default(StringFieldType));
 			Assert.IsTrue(result);
         }
 
         [Test]
         public void AreEqual_ValuesAreNullTest()
         {
-			var result = Compare<StringFieldType>.AreEqual(null, null);
+			var result = Compare.AreEqual(null, null);
 			Assert.IsTrue(result);
         }
 
@@ -48,7 +48,7 @@ namespace EasyEqual.Tests.ComplexTypeTests.ComplexFieldsTests
 			var actual = new StringFieldType("test");
 			var expected = new StringFieldType("unequal");
 
-			var result = Compare<StringFieldType>.AreEqual(actual, expected);
+			var result = Compare.AreEqual(actual, expected);
             Assert.IsFalse(result);
         }
 
@@ -57,7 +57,7 @@ namespace EasyEqual.Tests.ComplexTypeTests.ComplexFieldsTests
         {
 			var expected = new StringFieldType("unequal");
 
-            var result = Compare<StringFieldType>.AreEqual(default(StringFieldType), expected);
+            var result = Compare.AreEqual(default(StringFieldType), expected);
 			Assert.IsFalse(result);
         }
 
@@ -66,7 +66,7 @@ namespace EasyEqual.Tests.ComplexTypeTests.ComplexFieldsTests
         {
 			var expected = new StringFieldType("unequal");
 
-			var result = Compare<StringFieldType>.AreEqual(null, expected);
+			var result = Compare.AreEqual(null, expected);
 			Assert.IsFalse(result);
         }
 
@@ -75,7 +75,7 @@ namespace EasyEqual.Tests.ComplexTypeTests.ComplexFieldsTests
         {
 			var actual = new StringFieldType("unequal");
 
-			var result = Compare<StringFieldType>.AreEqual(actual, default(StringFieldType));
+			var result = Compare.AreEqual(actual, default(StringFieldType));
 			Assert.IsFalse(result);
         }
 
@@ -84,7 +84,7 @@ namespace EasyEqual.Tests.ComplexTypeTests.ComplexFieldsTests
         {
 			var actual = new StringFieldType("unequal");
 
-			var result = Compare<StringFieldType>.AreEqual(actual, null);
+			var result = Compare.AreEqual(actual, null);
 			Assert.IsFalse(result);
         }
     }

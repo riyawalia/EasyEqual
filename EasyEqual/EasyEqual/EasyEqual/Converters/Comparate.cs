@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic; 
 
 namespace EasyEqual.Converters
@@ -27,8 +27,13 @@ namespace EasyEqual.Converters
             if (!c1.PrimitiveFieldKeys.SetEquals(c2.PrimitiveFieldKeys))
                 return false; 
 
-            var found = new List<bool>(c1.ComplexComparate.Count);
-
+            var found = new List<bool>();
+            int len = c2.ComplexComparate.Count;
+            for (int i = 0; i < len; ++i)
+            {
+                found.Add(false);
+            }
+            
 			foreach(var c1complex in c1.ComplexComparate) {
                 bool exists = false;
                 int curr = 0; 
